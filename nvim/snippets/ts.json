@@ -1,0 +1,17 @@
+{
+  "co": {
+    "prefix": "co",
+    "body": [
+      "console.log('🚀🚀🚀 file: ${TM_FILENAME} [line ${TM_LINE_NUMBER}] $1', $1);"
+    ],
+    "description": "log debug"
+  },
+  "coj": {
+    "prefix": "coj",
+    "body": "console.log('🚀🚀🚀 file: ${TM_FILENAME} [line ${TM_LINE_NUMBER}] $1', JSON.stringify($2, null, 4));"
+  },
+  "arr": {
+    "prefix": "arr",
+    "body": "const $1 = ($2) => {$3 \n \n};"
+  }
+}
