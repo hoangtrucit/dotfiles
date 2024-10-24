@@ -64,25 +64,20 @@ keymap.set("n", "<C-;>", ":wincmd w<CR>")
 -- vim.keymap.set("n", "<leader>q", "<cmd>bd<CR>", { desc = "Close Buffer" })
 vim.keymap.set("n", "<leader>bc", "<cmd>close<CR>", { desc = "Close Buffer" })
 
--- Diagnostics
-keymap.set("n", "<D-j>", function()
-	vim.diagnostic.goto_next()
-end, opts)
-
-keymap.set("n", "<M-j>", function()
-	vim.diagnostic.goto_next()
-end, opts)
-
 keymap.set("n", "zR", require("ufo").openAllFolds)
 keymap.set("n", "zM", require("ufo").closeAllFolds)
 keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
 keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
 
 keymap.set("v", "zj", "<CMD>VisualDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
-keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
+keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>")   -- closeAllFolds == closeFoldsWith(0)
 keymap.set("n", "K", function()
 	local winid = require("ufo").peekFoldedLinesUnderCursor()
 	if not winid then
 		vim.lsp.buf.hover()
 	end
+end)
+
+keymap.set("n", "<C-r>", function()
+	require("neogen").generate()
 end)
