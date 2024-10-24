@@ -195,28 +195,39 @@ return {
 			lsp.on_attach(function(client, bufnr)
 				local opts = { buffer = bufnr, remap = false }
 
-				vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Reference" }))
-				vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Definition" }))
-				vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP Hover" }))
-				vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP Workspace Symbol" }))
-				vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.setloclist() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP Show Diagnostics" }))
-				vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end,
-					vim.tbl_deep_extend("force", opts, { desc = "Next Diagnostic" }))
-				vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end,
-					vim.tbl_deep_extend("force", opts, { desc = "Previous Diagnostic" }))
-				vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP Code Action" }))
-				vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP References" }))
-				vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP Rename" }))
-				vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
-					vim.tbl_deep_extend("force", opts, { desc = "LSP Signature Help" }))
+				vim.keymap.set("n", "gr", function()
+					vim.lsp.buf.references()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Reference" }))
+				vim.keymap.set("n", "gd", function()
+					vim.lsp.buf.definition()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Definition" }))
+				vim.keymap.set("n", "K", function()
+					vim.lsp.buf.hover()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Hover" }))
+				vim.keymap.set("n", "<leader>vws", function()
+					vim.lsp.buf.workspace_symbol()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Workspace Symbol" }))
+				vim.keymap.set("n", "<leader>vd", function()
+					vim.diagnostic.setloclist()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Show Diagnostics" }))
+				vim.keymap.set("n", "[d", function()
+					vim.diagnostic.goto_next()
+				end, vim.tbl_deep_extend("force", opts, { desc = "Next Diagnostic" }))
+				vim.keymap.set("n", "]d", function()
+					vim.diagnostic.goto_prev()
+				end, vim.tbl_deep_extend("force", opts, { desc = "Previous Diagnostic" }))
+				vim.keymap.set("n", "<leader>vca", function()
+					vim.lsp.buf.code_action()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Code Action" }))
+				vim.keymap.set("n", "<leader>vrr", function()
+					vim.lsp.buf.references()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP References" }))
+				vim.keymap.set("n", "<leader>vrn", function()
+					vim.lsp.buf.rename()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Rename" }))
+				vim.keymap.set("i", "<C-h>", function()
+					vim.lsp.buf.signature_help()
+				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Signature Help" }))
 			end)
 
 			require("mason").setup({})
@@ -253,18 +264,16 @@ return {
 
 			cmp.setup.cmdline(":", {
 				-- mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources(
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
 					{
-						{ name = "path" },
-					},
-					{
-						{
-							name = "cmdline",
-							option = {
-								ignore_cmds = { "Man", "!" },
-							},
+						name = "cmdline",
+						option = {
+							ignore_cmds = { "Man", "!" },
 						},
-					}),
+					},
+				}),
 			})
 
 			-- -- `/` cmdline setup.
@@ -301,7 +310,7 @@ return {
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip", keyword_length = 2 },
-					{ name = "buffer",  keyword_length = 3 },
+					{ name = "buffer", keyword_length = 3 },
 					{ name = "path" },
 				},
 				mapping = cmp.mapping.preset.insert({
@@ -317,7 +326,22 @@ return {
 				}),
 			})
 
+			vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
+				config = config or {}
+				config.focus_id = ctx.method
 
+				if not (result and result.contents) then
+					return
+				end
+
+				local markdown_lines = vim.split(result.contents.value, "\n", { trimempty = false })
+
+				if vim.tbl_isempty(markdown_lines) then
+					return
+				end
+
+				return vim.lsp.util.open_floating_preview(markdown_lines, "markdown", config)
+			end
 			-- lsp
 			-- local on_attach = require("plugins.configs.lspconfig").on_attach
 			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -340,6 +364,5 @@ return {
 			-- 	},
 			-- }
 		end,
-	}
-
+	},
 }

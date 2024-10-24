@@ -159,6 +159,9 @@ return {
 		"nvim-lua/plenary.nvim",
 		"joshmedeski/telescope-smart-goto.nvim",
 	},
+	keys = {
+		{ "K", false },
+	},
 	config = function()
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
@@ -264,7 +267,6 @@ return {
 				},
 			},
 		})
-
 
 		-- require("telescope").load_extension("neoclip")
 

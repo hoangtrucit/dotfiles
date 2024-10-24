@@ -1,6 +1,6 @@
 return {
 	{
-		"kevinhwang91/promise-async"
+		"kevinhwang91/promise-async",
 	},
 	{
 		"kevinhwang91/nvim-ufo",
@@ -40,11 +40,11 @@ return {
 				return newVirtText
 			end
 			local ftMap = {
-				vim = 'indent',
-				python = { 'indent' },
-				typescript = { 'indent', },
-				typescriptreact = { 'indent', },
-				git = ''
+				vim = "indent",
+				python = { "indent" },
+				typescript = { "indent" },
+				typescriptreact = { "indent" },
+				git = "",
 			}
 			vim.cmd([[
 				highlight UfoFoldedFg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
@@ -54,36 +54,36 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities.textDocument.foldingRange = {
 				dynamicRegistration = false,
-				lineFoldingOnly = true
+				lineFoldingOnly = true,
 			}
 			local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
 			for _, ls in ipairs(language_servers) do
-				require('lspconfig')[ls].setup({
-					capabilities = capabilities
+				require("lspconfig")[ls].setup({
+					capabilities = capabilities,
 					-- you can add other fields for setting up lsp server in this table
 				})
 			end
-			require('ufo').setup({
+			require("ufo").setup({
 				open_fold_hl_timeout = 150,
 				close_fold_kinds_for_ft = {
 					default = {},
-					typescript = { 'imports', 'comment', 'region', 'method', 'function', 'class' },
-					typescriptreact = { 'imports', 'comment', 'region', 'method', 'function', 'class' },
-					json = { 'array' },
-					c = { 'comment', 'region' }
+					typescript = { "imports", "comment", "region", "method", "function", "class" },
+					typescriptreact = { "imports", "comment", "region", "method", "function", "class" },
+					json = { "array" },
+					c = { "comment", "region" },
 				},
 				preview = {
 					win_config = {
-						border = { '', '─', '', '', '', '─', '', '' },
-						winhighlight = 'Normal:Folded',
-						winblend = 0
+						border = { "", "─", "", "", "", "─", "", "" },
+						winhighlight = "Normal:Folded",
+						winblend = 0,
 					},
 					mappings = {
-						scrollU = '<C-u>',
-						scrollD = '<C-d>',
-						jumpTop = '[',
-						jumpBot = ']'
-					}
+						scrollU = "<C-u>",
+						scrollD = "<C-d>",
+						jumpTop = "[",
+						jumpBot = "]",
+					},
 				},
 				fold_virt_text_handler = handler,
 				-- provider_selector = function(bufnr, filetype, buftype)
@@ -97,6 +97,24 @@ return {
 				-- 	-- refer to ./doc/example.lua for detail
 				-- end
 			})
+			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+			vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+			vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+			vim.keymap.set("n", "zk", function()
+				local winid = require("ufo").peekFoldedLinesUnderCursor()
+				if not winid then
+					vim.lsp.buf.hover()
+				else
+					local bufnr = vim.api.nvim_win_get_buf(winid)
+					local keys = { "a", "i", "o", "A", "I", "O", "gd", "gr" }
+					for _, k in ipairs(keys) do
+						-- Add a prefix key to fire `trace` action,
+						-- if Neovim is 0.8.0 before, remap yourself
+						vim.keymap.set("n", k, "<CR>" .. k, { noremap = false, buffer = bufnr })
+					end
+				end
+			end)
 		end,
-	}
+	},
 }
