@@ -39,13 +39,13 @@ return {
 				table.insert(newVirtText, { suffix, "MoreMsg" })
 				return newVirtText
 			end
-			local ftMap = {
-				vim = "indent",
-				python = { "indent" },
-				typescript = { "indent" },
-				typescriptreact = { "indent" },
-				git = "",
-			}
+			-- local ftMap = {
+			-- 	vim = "indent",
+			-- 	python = { "indent" },
+			-- 	typescript = { "indent" },
+			-- 	typescriptreact = { "indent" },
+			-- 	git = "",
+			-- }
 			vim.cmd([[
 				highlight UfoFoldedFg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 				highlight UfoFoldedBg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
@@ -64,12 +64,13 @@ return {
 				})
 			end
 			require("ufo").setup({
+				enable_get_fold_virt_text = true,
 				open_fold_hl_timeout = 150,
 				close_fold_kinds_for_ft = {
 					default = {},
-					typescript = { "imports", "comment", "region", "method", "function", "class" },
-					typescriptreact = { "imports", "comment", "region", "method", "function", "class" },
-					json = { "array" },
+					typescript = { "imports", "comment", "region", "marker" },
+					typescriptreact = { "imports", "comment", "region" },
+					json = { "comment" },
 					c = { "comment", "region" },
 				},
 				preview = {
@@ -87,15 +88,15 @@ return {
 				},
 				fold_virt_text_handler = handler,
 				-- provider_selector = function(bufnr, filetype, buftype)
-				-- 	-- print(filetype)
+				-- 	print(filetype)
 				-- 	-- if you prefer treesitter provider rather than lsp,
 				-- 	-- return ftMap[filetype] or {'treesitter', 'indent'}
 				-- 	return ftMap[filetype]
 				-- 	-- return ftMap[filetype]
-				-- 	-- return { 'treesitter', 'indent' }
-
+				-- 	-- return { "treesitter", "indent" }
+				--
 				-- 	-- refer to ./doc/example.lua for detail
-				-- end
+				-- end,
 			})
 			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)

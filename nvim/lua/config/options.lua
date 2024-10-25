@@ -38,7 +38,9 @@ vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to de
 vim.opt.foldclose = "all" -- Using ufo provider need a large value, feel free to decrease the value
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
+vim.opt.foldnestmax = 4
 vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- Add asterisks in block comments
 vim.opt.formatoptions:append({ "r" })
 
