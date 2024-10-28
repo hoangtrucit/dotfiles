@@ -64,10 +64,13 @@ return {
 				})
 			end
 			require("ufo").setup({
+				-- provider_selector = function()
+				-- 	return { "treesitter", "indent" }
+				-- end,
 				enable_get_fold_virt_text = true,
 				open_fold_hl_timeout = 150,
 				close_fold_kinds_for_ft = {
-					default = {},
+					default = { "imports" },
 					typescript = { "imports", "comment", "region", "marker" },
 					typescriptreact = { "imports", "comment", "region" },
 					json = { "comment" },

@@ -40,6 +40,8 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.foldnestmax = 4
 vim.opt.foldmethod = "expr"
+vim.opt.foldtext = ""
+vim.opt.fillchars:append("eob: ,fold: ,foldopen:,foldsep: ,foldclose:")
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- Add asterisks in block comments
 vim.opt.formatoptions:append({ "r" })
@@ -78,3 +80,5 @@ vim.api.nvim_create_user_command("Cfp", function()
 	local relative_filepath = vim.fn.expand("%:.")
 	vim.fn.setreg("+", relative_filepath)
 end, {})
+
+vim.opt.shellcmdflag = "-ic"
