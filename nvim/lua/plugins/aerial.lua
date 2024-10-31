@@ -9,15 +9,29 @@ return {
 		icons.lua = { Package = icons.Control }
 
 		---@type table<string, string[]>|false
-		local filter_kind = false
-		if LazyVim.config.kind_filter then
-			filter_kind = assert(vim.deepcopy(LazyVim.config.kind_filter))
-			filter_kind._ = filter_kind.default
-			filter_kind.default = nil
-		end
+		-- local filter_kind = false
+		-- if LazyVim.config.kind_filter then
+		-- 	filter_kind = assert(vim.deepcopy(LazyVim.config.kind_filter))
+		-- 	filter_kind._ = filter_kind.default
+		-- 	filter_kind.default = nil
+		-- end
+		-- local filter_kind1 = vim.deepcopy(LazyVim.config.kind_filter)
+		-- print(vim.fn.json_encode(filter_kind1))
+		local filter_kind = {
+			"Class",
+			"Constructor",
+			"Enum",
+			"Method",
+			"Interface",
+			"Module",
+			"Method",
+			"Struct",
+			"Function",
+			"Constant",
+		}
 
 		local opts = {
-			attach_mode = "global",
+			attach_mode = "window",
 			backends = { "lsp", "treesitter", "markdown", "man" },
 			show_guides = true,
 			layout = {
@@ -64,10 +78,22 @@ return {
         nested_top = "│ ",
         whitespace = "  ",
       },
+			manage_folds = false,
+			link_folds_to_tree = false,
+			link_tree_to_folds = false,
+			autojump = true,
+			on_attach = function(bufnr)
+				local function start_up_func()
+					require("aerial").tree_set_collapse_level(bufnr, 1)
+				end
+				local timer = vim.loop.new_timer()
+				timer:start(250, 0, vim.schedule_wrap(start_up_func))
+			end,
+			lazy_load = true,
 		}
 		return opts
 	end,
 	keys = {
-		{ "<leader>cs", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
+		{ "<leader>cs", "<cmd>AerialOpen<cr>", desc = "Aerial (Symbols)" },
 	},
 }
