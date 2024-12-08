@@ -53,7 +53,7 @@ return {
 				--   cursor - Opens float on top of the cursor
 				--   editor - Opens float centered in the editor
 				--   win    - Opens float centered in the window
-				relative = "win",
+				relative = "editor",
 
 				-- These control the height of the floating window.
 				-- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
@@ -87,7 +87,7 @@ return {
 					require("aerial").tree_set_collapse_level(bufnr, 1)
 				end
 				local timer = vim.loop.new_timer()
-				timer:start(250, 0, vim.schedule_wrap(start_up_func))
+				timer:start(200, 0, vim.schedule_wrap(start_up_func))
 			end,
 			lazy_load = true,
 		}

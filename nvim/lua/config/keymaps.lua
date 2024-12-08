@@ -24,6 +24,7 @@ keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
 -- keymap.set("n", "<Leader>e", ":NvimTreeToggle<Return>", opts)
 --
 keymap.set("n", "<leader>fr", ":Neotree reveal<CR>", {})
+keymap.set("n", "<leader>e", ":Neotree reveal<CR>", {})
 
 -- Tabs
 keymap.set("n", "te", ":tabedit")
@@ -50,7 +51,7 @@ keymap.set("n", "<C-S-j>", "<C-w>-")
 keymap.set("n", "<C-S-y>", ":Cfp<CR>")
 
 -- cursor moving
-keymap.set("n", "ff", ":HopWord<CR>")
+-- keymap.set("n", "ff", ":HopWord<CR>")
 
 -- comment code
 keymap.set("n", "<leader>/", ":normal gcc<CR><DOWN>")
@@ -59,6 +60,7 @@ keymap.set("v", "<leader>/", "<Esc>:normal gvgc<CR>")
 -- dashboard
 keymap.set("n", "<leader>cd", ":Dashboard<CR>")
 keymap.set("n", "<C-;>", ":wincmd w<CR>")
+keymap.set("n", "<leader>cd", ":lua Snacks.dashboard()<CR>")
 
 -- close buffer
 -- vim.keymap.set("n", "<leader>q", "<cmd>bd<CR>", { desc = "Close Buffer" })

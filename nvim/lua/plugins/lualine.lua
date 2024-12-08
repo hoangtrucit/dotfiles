@@ -7,7 +7,8 @@ return {
 	config = function()
 		require("lualine").setup({
 			options = {
-				theme = "ayu_dark",
+				-- theme = "ayu_dark",
+				theme = "rose-pine",
 			},
 			sections = {
 				lualine_a = { "mode" },
