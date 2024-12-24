@@ -231,7 +231,6 @@ return {
 			dashboard = {
 				preset = {
 					header = [[
-
 ██╗  ██╗ ██████╗ ██████╗ ███████╗██╗     ██╗███████╗███████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗██╔════╝██║     ██║██╔════╝██╔════╝
 █████╔╝ ██║   ██║██║  ██║█████╗  ██║     ██║█████╗  █████╗  
@@ -243,31 +242,7 @@ return {
 			},
 		},
 	},
-
-	-- {
-	-- 	"nvimdev/dashboard-nvim",
-	-- 	event = "VimEnter",
-	-- 	-- opts = function(_, opts)
-	-- 	-- 	local logo = [[
-	-- 	--  ███╗   ██╗ ██████╗      ██████╗ ██████╗ ██████╗ ███████╗    ███╗   ██╗ ██████╗     ███╗   ███╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗
-	-- 	--  ████╗  ██║██╔═══██╗    ██╔════╝██╔═══██╗██╔══██╗██╔════╝    ████╗  ██║██╔═══██╗    ████╗ ████║██╔═══██╗████╗  ██║██╔════╝╚██╗ ██╔╝
-	-- 	--  ██╔██╗ ██║██║   ██║    ██║     ██║   ██║██║  ██║█████╗      ██╔██╗ ██║██║   ██║    ██╔████╔██║██║   ██║██╔██╗ ██║█████╗   ╚████╔╝
-	-- 	--  ██║╚██╗██║██║   ██║    ██║     ██║   ██║██║  ██║██╔══╝      ██║╚██╗██║██║   ██║    ██║╚██╔╝██║██║   ██║██║╚██╗██║██╔══╝    ╚██╔╝
-	-- 	--  ██║ ╚████║╚██████╔╝    ╚██████╗╚██████╔╝██████╔╝███████╗    ██║ ╚████║╚██████╔╝    ██║ ╚═╝ ██║╚██████╔╝██║ ╚████║███████╗   ██║
-	-- 	--  ╚═╝  ╚═══╝ ╚═════╝      ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝    ╚═╝  ╚═══╝ ╚═════╝     ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝
-	-- 	--
-	-- 	--  ]]
-	-- 	--
-	-- 	-- 	logo = string.rep("\n", 8) .. logo .. "\n\n"
-	-- 	-- 	opts.config.header = vim.split(logo, "\n")
-	-- 	--
-	-- 	-- 	return opts
-	-- 	-- end,
-	-- },
-
-	{
-		"DaikyXendo/nvim-material-icon",
-	},
+	"DaikyXendo/nvim-material-icon",
 	"nanotee/zoxide.vim",
 	"nvim-telescope/telescope-ui-select.nvim",
 	"debugloop/telescope-undo.nvim",
@@ -279,8 +254,8 @@ return {
 			"tpope/vim-rhubarb",
 		},
 	},
-	{ "nvim-telescope/telescope-live-grep-args.nvim" },
-	{ "brenoprata10/nvim-highlight-colors" },
+	"nvim-telescope/telescope-live-grep-args.nvim",
+	"brenoprata10/nvim-highlight-colors",
 	{
 		"exosyphon/telescope-color-picker.nvim",
 		config = function()

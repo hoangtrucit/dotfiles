@@ -55,6 +55,7 @@ keymap.set("n", "<C-S-y>", ":Cfp<CR>")
 
 -- comment code
 keymap.set("n", "<leader>/", ":normal gcc<CR><DOWN>")
+keymap.set("n", "<leader>lg", "<cmd>lazygit<cr>")
 keymap.set("v", "<leader>/", "<Esc>:normal gvgc<CR>")
 
 -- dashboard
@@ -82,6 +83,8 @@ vim.keymap.set("n", "<leader>bc", "<cmd>close<CR>", { desc = "Close Buffer" })
 
 keymap.set("v", "zj", "<CMD>VisualDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
 keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
+
+vim.api.nvim_set_keymap("n", "<Leader>gh", ":lua require('neogen').generate()<CR>", { noremap = true, silent = true })
 
 keymap.set("n", "<C-r>", function()
 	require("neogen").generate()

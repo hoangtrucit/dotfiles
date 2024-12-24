@@ -71,13 +71,13 @@ return {
 			},
 			icons = icons,
 			filter_kind = filter_kind,
-      -- stylua: ignore
-      guides = {
-        mid_item   = "├╴",
-        last_item  = "└╴",
-        nested_top = "│ ",
-        whitespace = "  ",
-      },
+			-- stylua: ignore
+			guides = {
+				mid_item   = "├╴",
+				last_item  = "└╴",
+				nested_top = "│ ",
+				whitespace = "  ",
+			},
 			manage_folds = false,
 			link_folds_to_tree = false,
 			link_tree_to_folds = false,

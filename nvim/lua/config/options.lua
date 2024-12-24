@@ -82,3 +82,5 @@ vim.api.nvim_create_user_command("Cfp", function()
 end, {})
 
 vim.opt.shellcmdflag = "-ic"
+vim.opt.completeopt = "menu,menuone,noselect"
+vim.g.snacks_animate = false
