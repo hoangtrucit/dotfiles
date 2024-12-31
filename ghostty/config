@@ -1,0 +1,23 @@
+theme = rose-pine
+bold-is-bright = true
+
+window-step-resize = false
+window-padding-x = 
+window-padding-y = 0
+window-padding-balance = true
+window-padding-color = background
+
+copy-on-select = true
+focus-follows-mouse = true
+
+font-size = 15
+font-family= "GeistMono Nerd Font"
+font-style= Bold
+
+shell-integration = zsh
+
+
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = ffffff
+macos-icon-screen-color = 262335
