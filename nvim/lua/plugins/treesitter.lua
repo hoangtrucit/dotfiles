@@ -3,6 +3,8 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		-- branch = "master",
 		opts = {
+			auto_install = true,
+			indent = { enable = true },
 			ensure_installed = {
 				"javascript",
 				"typescript",

@@ -56,17 +56,19 @@ nnoremap "*d "*d
 nnoremap "*D "*D
 nnoremap y "*y
 nnoremap Y "*Y
-vnoremap y "*y
-vnoremap Y "*Y
 nnoremap p "*p
 nnoremap P "*P
 noremap  p "*p
 noremap  P "*P
 vnoremap y "*y
 vnoremap Y "*Y
-vnoremap p "*p
-vnoremap P "*P
+vnoremap p "*P
 ]])
+
+-- vnoremap p "*p
+-- vnoremap P "*P
+-- vnoremap y "*y
+-- vnoremap Y "*Y
 
 vim.cmd("source ~/.config/nvim/after/duplicate/duplicate.vim")
 vim.g["duplicate-nvim-config"] = {
