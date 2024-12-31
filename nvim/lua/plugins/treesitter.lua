@@ -16,6 +16,7 @@ return {
 				"vim",
 				"lua",
 				"python",
+				"go",
 			},
 			query_linter = {
 				enable = true,

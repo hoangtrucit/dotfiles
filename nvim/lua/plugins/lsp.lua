@@ -12,7 +12,6 @@ return {
 				end,
 			},
 			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
-			{ "saghen/blink.cmp" }, -- Optional
 		},
 		config = function()
 			local lsp = require("lsp-zero")
