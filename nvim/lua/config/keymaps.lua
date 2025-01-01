@@ -90,3 +90,5 @@ vim.api.nvim_set_keymap("n", "<Leader>gh", ":lua require('neogen').generate()<CR
 keymap.set("n", "<C-r>", function()
 	require("neogen").generate()
 end)
+
+keymap.set("t", "<C-w>", "<C-\\><C-n>", { silent = true })
