@@ -1,23 +1,38 @@
 theme = rose-pine
 bold-is-bright = true
 
-window-step-resize = false
-window-padding-x = 
+### setup window
+window-height = 5000
+window-width = 5000
+#window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
-window-padding-color = background
+#window-padding-color = extend
 
-copy-on-select = true
-focus-follows-mouse = true
 
+### font
 font-size = 15
 font-family= "GeistMono Nerd Font"
 font-style= Bold
 
+### shell
 shell-integration = zsh
 
-
+### icon
 macos-icon = custom-style
 macos-icon-frame = plastic
 macos-icon-ghost-color = ffffff
 macos-icon-screen-color = 262335
+
+### mouse & cursor
+mouse-hide-while-typing = true
+cursor-style-blink = false
+cursor-color = edc381
+focus-follows-mouse = true
+copy-on-select = true
+
+### background
+background-opacity = 0.9
+background-blur-radius = 80
+
+
