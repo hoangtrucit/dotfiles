@@ -12,6 +12,10 @@ return {
 					["--layout"] = "default",
 				},
 				cwd_prompt = false,
+				multiprocess = true, -- run command in a separate process
+				git_icons = true, -- show git icons?
+				file_icons = true, -- show file icons (true|"devicons"|"mini")?
+				color_icons = true,
 			},
 		})
 	end,

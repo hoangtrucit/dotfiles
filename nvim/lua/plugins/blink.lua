@@ -4,6 +4,7 @@ return {
 	-- optional: provides snippets for the snippet source
 	event = { "InsertEnter", "CmdLineEnter" },
 	dependencies = "rafamadriz/friendly-snippets",
+	version = "*",
 	opts = {
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
