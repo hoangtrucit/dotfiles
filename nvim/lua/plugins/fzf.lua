@@ -7,7 +7,8 @@ return {
 				["--layout"] = "default",
 			},
 			files = {
-				fd_opts = [[--color=never --type f --hidden --follow --exclude .git --exclude node_modules --exclude .DS_Store]],
+				fd_opts =
+				[[--color=never --type f --hidden --follow --exclude .git --exclude node_modules --exclude .DS_Store]],
 				fzf_opts = {
 					["--layout"] = "default",
 				},

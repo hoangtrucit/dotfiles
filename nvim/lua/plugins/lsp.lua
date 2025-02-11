@@ -74,6 +74,7 @@ return {
 					"marksman",
 					"gopls",
 					"astro",
+					"yamlls",
 				},
 				handlers = {
 					lsp.default_setup,

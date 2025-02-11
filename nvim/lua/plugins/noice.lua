@@ -1,11 +1,5 @@
 return {
 	{
-		"folke/snacks.nvim",
-		opts = {
-			notifier = {},
-		},
-	},
-	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {

@@ -1,40 +1,51 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter",
-		-- branch = "master",
-		opts = {
-			auto_install = true,
-			indent = { enable = true },
-			ensure_installed = {
-				"javascript",
-				"typescript",
-				"css",
-				"gitignore",
-				"graphql",
-				"http",
-				"json",
-				"scss",
-				"sql",
-				"vim",
-				"lua",
-				"python",
-				"go",
-			},
-			query_linter = {
-				enable = true,
-				use_virtual_text = true,
-				lint_events = { "BufWrite", "CursorHold" },
-			},
-		},
-		config = function(_, opts)
-			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			parser_config.printf = {
-				install_info = {
-					url = "https://github.com/pstuifzand/tree-sitter-printf",
-					files = { "src/parser.c" },
-				},
-				filetype = "printf",
-			}
-		end,
+		-- "nvim-treesitter/nvim-treesitter",
+		-- -- branch = "master",
+		-- build = ":TSUpdate",
+		-- event = { "LazyFile", "VeryLazy" },
+		-- lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+		-- init = function(plugin)
+		-- 	require("lazy.core.loader").add_to_rtp(plugin)
+		-- 	require("nvim-treesitter.query_predicates")
+		-- end,
+		-- cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+		-- opts_extend = { "ensure_installed" },
+		-- opts = {
+		-- 	auto_install = true,
+		-- 	highlight = { enable = true },
+		-- 	indent = { enable = true },
+		-- 	ensure_installed = {
+		-- 		"javascript",
+		-- 		"typescript",
+		-- 		"css",
+		-- 		"gitignore",
+		-- 		"graphql",
+		-- 		"http",
+		-- 		"json",
+		-- 		"scss",
+		-- 		"sql",
+		-- 		"vim",
+		-- 		"lua",
+		-- 		"markdown",
+		-- 		"xml",
+		-- 		"yaml",
+		-- 	},
+		-- 	query_linter = {
+		-- 		enable = true,
+		-- 		use_virtual_text = true,
+		-- 		lint_events = { "BufWrite", "CursorHold" },
+		-- 	},
+		-- },
+		-- -- config = function(_, opts)
+		-- -- 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+		-- -- 	parser_config.printf = {
+		-- -- 		install_info = {
+		-- -- 			url = "https://github.com/pstuifzand/tree-sitter-printf",
+		-- -- 			files = { "src/parser.c" },
+		-- -- 		},
+		-- -- 		filetype = "printf",
+		-- -- 	}
+		-- -- end,
 	},
 }

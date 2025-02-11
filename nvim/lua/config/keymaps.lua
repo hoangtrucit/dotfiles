@@ -33,6 +33,7 @@ keymap.set("n", "<C-tab>", ":tabnext<Return>", opts)
 keymap.set("n", "<S-tab>", ":tabprev<Return>", opts)
 keymap.set("n", "<tab>", ":bnext<Return>", opts)
 keymap.set("n", "tw", ":tabclose<Return>", opts)
+keymap.set("n", "<D-;>", "<C-w>w", opts)
 
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
@@ -64,6 +65,8 @@ keymap.set("n", "<leader>cd", ":Dashboard<CR>")
 keymap.set("n", "<C-;>", ":wincmd w<CR>")
 keymap.set("n", "<leader>cd", ":lua Snacks.dashboard()<CR>")
 
+keymap.set("i", "<D-i>", "<C-space>", { noremap = false, remap = true })
+
 -- close buffer
 -- vim.keymap.set("n", "<leader>q", "<cmd>bd<CR>", { desc = "Close Buffer" })
 vim.keymap.set("n", "<leader>bc", "<cmd>close<CR>", { desc = "Close Buffer" })
@@ -91,4 +94,5 @@ keymap.set("n", "<C-r>", function()
 	require("neogen").generate()
 end)
 
-keymap.set("t", "<C-w>", "<C-\\><C-n>", { silent = true })
+--keymap.set("t", "<C-w>", "<C-\\><C-n>", { silent = true })
+keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })

@@ -1,18 +1,20 @@
-theme = rose-pine
+ theme = rose-pine
+#theme = catppuccin-frappe
 bold-is-bright = true
 
 ### setup window
 window-height = 5000
 window-width = 5000
-#window-padding-x = 0
+window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
+window-vsync = true
 #window-padding-color = extend
-
 
 ### font
 font-size = 15
 font-family= "GeistMono Nerd Font"
+#font-family= "Dank Mono"
 font-style= Bold
 
 ### shell
@@ -27,12 +29,23 @@ macos-icon-screen-color = 262335
 ### mouse & cursor
 mouse-hide-while-typing = true
 cursor-style-blink = false
-cursor-color = edc381
+cursor-color = 43728c
 focus-follows-mouse = true
 copy-on-select = true
 
 ### background
-background-opacity = 0.9
-background-blur-radius = 80
+# background-opacity = 0.9
+# background-blur-radius = 90
 
+#cursor-invert-fg-bg = true
+#selection-foreground = 43728c
+#selection-background = 43728c
+auto-update = download
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
+title = "KofeLife"
 
+clipboard-write = allow
+clipboard-read = allow
+
+keybind = super+k=clear_screen

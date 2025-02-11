@@ -22,12 +22,13 @@ return {
 			end,
 		},
 		completion = {
-			list = { selection = "auto_insert" },
+			-- list = { selection = "auto_insert" },
 			accept = {
 				create_undo_point = true,
 				auto_brackets = { enabled = true },
 			},
 			menu = {
+				auto_show = true,
 				draw = {
 					treesitter = { "lsp" },
 				},

@@ -47,16 +47,29 @@ return {
 			-- 	git = "",
 			-- }
 			vim.cmd([[
-				highlight UfoFoldedFg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-				highlight UfoFoldedBg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-				highlight Folded ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-			]])
+					highlight UfoFoldedFg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+					highlight UfoFoldedBg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+					highlight Folded ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+				]])
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities.textDocument.foldingRange = {
 				dynamicRegistration = false,
 				lineFoldingOnly = true,
 			}
-			local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+
+			local function available_servers()
+				local servers = {}
+				local configs = require("lspconfig.configs")
+				for server, config in pairs(configs) do
+					if config.manager ~= nil then
+						table.insert(servers, server)
+					end
+				end
+				return servers
+			end
+
+			-- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+			local language_servers = available_servers()
 			for _, ls in ipairs(language_servers) do
 				require("lspconfig")[ls].setup({
 					capabilities = capabilities,
