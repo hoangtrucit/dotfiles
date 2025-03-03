@@ -1,6 +1,9 @@
 return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	keys = {
+		{ "<leader>/", vim.NIL },
+	},
 	config = function()
 		require("fzf-lua").setup({
 			fzf_opts = {

@@ -1,51 +1,53 @@
 return {
 	"saghen/blink.cmp",
-	lazy = false, -- lazy loading handled internally
-	-- optional: provides snippets for the snippet source
-	event = { "InsertEnter", "CmdLineEnter" },
 	dependencies = "rafamadriz/friendly-snippets",
 	version = "*",
 	opts = {
-		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
-			cmdline = function()
+		cmdline = {
+			enabled = true,
+			keymap = nil, -- Inherits from top level `keymap` config when not set
+			sources = function()
 				local type = vim.fn.getcmdtype()
 				-- Search forward and backward
 				if type == "/" or type == "?" then
 					return { "buffer" }
 				end
 				-- Commands
-				if type == ":" then
+				if type == ":" or type == "@" then
 					return { "cmdline" }
 				end
 				return {}
 			end,
-		},
-		completion = {
-			-- list = { selection = "auto_insert" },
-			accept = {
-				create_undo_point = true,
-				auto_brackets = { enabled = true },
-			},
-			menu = {
-				auto_show = true,
-				draw = {
-					treesitter = { "lsp" },
+			completion = {
+				trigger = {
+					show_on_blocked_trigger_characters = {},
+					show_on_x_blocked_trigger_characters = nil, -- Inherits from top level `completion.trigger.show_on_blocked_trigger_characters` config when not set
+				},
+				menu = {
+					auto_show = nil, -- Inherits from top level `completion.menu.auto_show` config when not set
+					draw = {
+						columns = { { "label", "label_description", gap = 1 } },
+					},
 				},
 			},
-			documentation = {
-				auto_show = true,
-				auto_show_delay_ms = 100,
+		},
+		completion = {
+			keyword = { range = "full" },
+
+			accept = { auto_brackets = { enabled = true } },
+
+			list = { selection = { preselect = true, auto_insert = true } },
+
+			menu = {
+				enabled = true,
 			},
-			ghost_text = { enabled = true },
 		},
 		signature = { enabled = true },
 		keymap = {
-			----preset = "enter",
 			preset = "super-tab",
-			cmdline = {
-				preset = "super-tab",
-			},
+		},
+		sources = {
+			default = { 'lsp', 'path', 'snippets', 'buffer', "cmdline" },
 		},
 	},
 }

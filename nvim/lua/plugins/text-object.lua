@@ -16,7 +16,7 @@ return {
 				"markdown_inline",
 				"kdl",
 				"sql",
-				"org",
+				-- "org",
 				"terraform",
 				"html",
 				"css",

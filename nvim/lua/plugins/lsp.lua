@@ -92,6 +92,7 @@ return {
 								"typescript",
 								"typescriptreact",
 								"typescript.tsx",
+								w,
 							},
 						})
 					end,

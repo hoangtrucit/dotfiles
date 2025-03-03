@@ -1,5 +1,5 @@
 local keymap = vim.keymap
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true, remap = true }
 
 keymap.set("n", "x", '"_x')
 keymap.set("n", "n", "nzzzv")
@@ -59,6 +59,7 @@ keymap.set("n", "<C-S-y>", ":Cfp<CR>")
 keymap.set("n", "<leader>/", ":normal gcc<CR><DOWN>")
 keymap.set("n", "<leader>lg", "<cmd>lazygit<cr>")
 keymap.set("v", "<leader>/", "<Esc>:normal gvgc<CR>")
+keymap.set("n", "<leader>/", "<Esc>:normal gcc<CR>")
 
 -- dashboard
 keymap.set("n", "<leader>cd", ":Dashboard<CR>")

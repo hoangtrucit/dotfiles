@@ -152,6 +152,10 @@
 -- 	},
 -- }
 return {
+	"nvim-telescope/telescope.nvim",
+	keys = {
+		{ "<leader>/", vim.NIL },
+	},
 	-- "nvim-telescope/telescope.nvim",
 	-- tag = "0.1.4",
 	-- dependencies = {
