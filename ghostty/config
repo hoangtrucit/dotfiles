@@ -9,7 +9,7 @@ window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
 window-vsync = true
-#window-padding-color = extend
+# window-padding-color = extend
 
 ### font
 font-size = 15
@@ -48,4 +48,8 @@ title = "KofeLife"
 clipboard-write = allow
 clipboard-read = allow
 
+macos-option-as-alt = true
 keybind = super+k=clear_screen
+
+
+
