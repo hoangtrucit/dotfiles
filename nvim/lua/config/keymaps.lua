@@ -24,15 +24,16 @@ keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
 -- keymap.set("n", "<Leader>f", ":NvimTreeFindFile<Return>", opts)
 -- keymap.set("n", "<Leader>e", ":NvimTreeToggle<Return>", opts)
 --
-keymap.set("n", "<leader>fr", ":Neotree reveal<CR>", {})
-keymap.set("n", "<leader>e", ":Neotree reveal<CR>", {})
+--keymap.set("n", "<leader>fr", ":Neotree reveal<CR>", {})
+-- keymap.set("n", "<leader>e", ":Neotree reveal<CR>", {})
 
 -- Tabs
 keymap.set("n", "te", ":tabedit")
-keymap.set("n", "<C-tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<S-tab>", ":tabprev<Return>", opts)
-keymap.set("n", "<tab>", ":bnext<Return>", opts)
+keymap.set("n", "<a-tab>", ":tabnext<Return>", opts)
+keymap.set("n", "tn", ":tabnew<Return>", opts)
 keymap.set("n", "tw", ":tabclose<Return>", opts)
+-- keymap.set("n", "<S-tab>", ":tabprev<Return>", opts)
+keymap.set("n", "<tab>", ":bnext<Return>", opts)
 keymap.set("n", "<D-;>", "<C-w>w", opts)
 
 -- Split window
@@ -60,6 +61,8 @@ keymap.set("n", "<leader>/", ":normal gcc<CR><DOWN>")
 keymap.set("n", "<leader>lg", "<cmd>lazygit<cr>")
 keymap.set("v", "<leader>/", "<Esc>:normal gvgc<CR>")
 keymap.set("n", "<leader>/", "<Esc>:normal gcc<CR>")
+keymap.set("n", "<D-/>", "<Esc>:normal gcc<CR>")
+keymap.set("v", "<D-/>", "<Esc>:normal gvgc<CR>")
 
 -- dashboard
 keymap.set("n", "<leader>cd", ":Dashboard<CR>")
@@ -87,9 +90,9 @@ vim.keymap.set("n", "<leader>bc", "<cmd>close<CR>", { desc = "Close Buffer" })
 -- keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
 
 keymap.set("v", "zj", "<CMD>VisualDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
-keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
+keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>")   -- closeAllFolds == closeFoldsWith(0)
 
-vim.api.nvim_set_keymap("n", "<Leader>gh", ":lua require('neogen').generate()<CR>", { noremap = true, silent = true })
+keymap.set("n", "<leader>gn", ":lua require('neogen').generate()<CR>", opts)
 
 keymap.set("n", "<C-r>", function()
 	require("neogen").generate()

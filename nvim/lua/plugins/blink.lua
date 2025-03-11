@@ -47,7 +47,7 @@ return {
 			preset = "super-tab",
 		},
 		sources = {
-			default = { 'lsp', 'path', 'snippets', 'buffer', "cmdline" },
+			default = { "lsp", "path", "snippets", "buffer", "cmdline", "omni" },
 		},
 	},
 }

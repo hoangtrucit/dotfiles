@@ -75,6 +75,7 @@ return {
 					"gopls",
 					"astro",
 					"yamlls",
+					"graphql",
 				},
 				handlers = {
 					lsp.default_setup,

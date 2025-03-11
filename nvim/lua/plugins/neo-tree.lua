@@ -1,9 +1,9 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	keys = {
-		{ "<leader>e", false },
-		{ "<leader>E", false },
-	},
+	-- keys = {
+	-- 	{ "<leader>e",  vim.NIL },
+	-- 	{ "<leader>fe", vim.NIL },
+	-- },
 	branch = "v3.x",
 	requires = {
 		"nvim-lua/plenary.nvim",

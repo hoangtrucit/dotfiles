@@ -1,6 +1,6 @@
 {
-  "co": {
-    "prefix": "co",
+  "cog": {
+    "prefix": "cog",
     "body": [
       "console.log('🚀🚀🚀 file: ${TM_FILENAME} [line ${TM_LINE_NUMBER}] $1', $1);"
     ],

@@ -7,7 +7,7 @@ return {
 	},
 	-- comment
 	{
-		"numToStr/Comment.nvim",
+		"numToStr/comment.nvim",
 	},
 	{
 		"hinell/duplicate.nvim",

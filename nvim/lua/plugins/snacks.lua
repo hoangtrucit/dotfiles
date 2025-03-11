@@ -45,6 +45,26 @@ return {
 			scope = { enabled = true },
 			scroll = { enabled = true },
 			notifier = { enabled = true },
+			image = {
+				enabled = true,
+				formats = {
+					"png",
+					"jpg",
+					"jpeg",
+					"gif",
+					"bmp",
+					"webp",
+					"tiff",
+					"heic",
+					"avif",
+					"mp4",
+					"mov",
+					"avi",
+					"mkv",
+					"webm",
+					"pdf",
+				},
+			},
 			-- animate = {
 			-- 	duration = 20, -- ms per step
 			-- 	easing = "linear",
@@ -52,7 +72,7 @@ return {
 			-- },
 		},
 		keys = {
-			-- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer"},
+			-- { "<leader>e",  function() Snacks.explorer() end,                                       desc = "File Explorer" },
 			{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers",
 			},
 			{ "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
