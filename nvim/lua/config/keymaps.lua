@@ -90,9 +90,10 @@ vim.keymap.set("n", "<leader>bc", "<cmd>close<CR>", { desc = "Close Buffer" })
 -- keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
 
 keymap.set("v", "zj", "<CMD>VisualDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
-keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>")   -- closeAllFolds == closeFoldsWith(0)
+keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
 
 keymap.set("n", "<leader>gn", ":lua require('neogen').generate()<CR>", opts)
+keymap.set("n", "<leader>cp", ":lua require('project').create_floating_window()<CR>", opts)
 
 keymap.set("n", "<C-r>", function()
 	require("neogen").generate()

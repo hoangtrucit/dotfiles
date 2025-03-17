@@ -86,39 +86,3 @@ end, {})
 vim.opt.shellcmdflag = "-ic"
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.g.snacks_animate = false
-
-vim.api.nvim_create_user_command("Mto", function(opts)
-	local args = opts.args
-	local dir = nil
-	local omi = "~/cyberlogitec/om3/om-apm-invoice-service/"
-	local omb = "~/cyberlogitec/om3/om-apm-backend/"
-	local omf = "~/cyberlogitec/om3/om-apm-frontend/"
-	local oms = "~/cyberlogitec/om3/om-apm-share/"
-	local omc = "~/cyberlogitec/om3/om-apm-config/"
-	local omw = "~/cyberlogitec/om3/om-apm-workorder-service/"
-
-	if args == "omi" then
-		dir = omi
-	end
-
-	if args == "omf" then
-		dir = omf
-	end
-
-	if args == "omc" then
-		dir = omc
-	end
-	if args == "omb" then
-		dir = omb
-	end
-	if args == "omw" then
-		dir = omw
-	end
-	if args == "oms" then
-		dir = oms
-	end
-
-	if dir ~= nil then
-		vim.api.nvim_set_current_dir(dir)
-	end
-end, { nargs = "?" })

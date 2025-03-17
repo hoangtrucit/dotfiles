@@ -12,9 +12,10 @@ window-vsync = true
 # window-padding-color = extend
 
 ### font
-font-size = 15
+font-size = 16
 font-family= "GeistMono Nerd Font"
 #font-family= "Dank Mono"
+# font-family = Dank Mono
 font-style= Bold
 
 ### shell
