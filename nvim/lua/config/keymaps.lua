@@ -25,7 +25,7 @@ keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
 -- keymap.set("n", "<Leader>e", ":NvimTreeToggle<Return>", opts)
 --
 --keymap.set("n", "<leader>fr", ":Neotree reveal<CR>", {})
--- keymap.set("n", "<leader>e", ":Neotree reveal<CR>", {})
+keymap.set("n", "<leader>e", ":Neotree reveal<CR>", {})
 
 -- Tabs
 keymap.set("n", "te", ":tabedit")
@@ -93,7 +93,8 @@ keymap.set("v", "zj", "<CMD>VisualDuplicate +1<CR>") -- closeAllFolds == closeFo
 keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
 
 keymap.set("n", "<leader>gn", ":lua require('neogen').generate()<CR>", opts)
-keymap.set("n", "<leader>cp", ":lua require('project').create_floating_window()<CR>", opts)
+-- keymap.set("n", "<leader>cp", ":lua require('project').create_floating_window()<CR>", opts)
+keymap.set("n", "<leader>cp", ":lua require('project').search_projects()<CR>", opts)
 
 keymap.set("n", "<C-r>", function()
 	require("neogen").generate()
