@@ -11,12 +11,7 @@ return {
 				theme = "rose-pine",
 			},
 			sections = {
-				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { "filename" },
-				lualine_x = {
-					"encoding",
-					"filetype",
+				lualine_a = {
 					{
 						"fileformat",
 						symbols = {
@@ -25,9 +20,16 @@ return {
 							mac = "", -- e711
 						},
 					},
+					"mode",
 				},
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = { "filename", "filetype" },
+				lualine_x = {
+					"encoding",
+					-- "filetype",
+				},
+				lualine_y = { "lsp_status" },
+				lualine_z = { "location", "tabs" },
 			},
 			inactive_sections = {
 				lualine_a = {},

@@ -64,6 +64,7 @@ noremap  P "*P
 vnoremap y "*y
 vnoremap Y "*Y
 vnoremap p "*P
+vnoremap X "_X
 ]])
 
 -- vnoremap p "*p

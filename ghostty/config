@@ -39,9 +39,10 @@ copy-on-select = true
 # background-blur-radius = 90
 
 #cursor-invert-fg-bg = true
-#selection-foreground = 43728c
-#selection-background = 43728c
+selection-foreground = ea9d34
+selection-background = 286983
 auto-update = download
+auto-update-channel = tip
 macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = hidden
 title = "KofeLife"
@@ -50,7 +51,7 @@ clipboard-write = allow
 clipboard-read = allow
 
 macos-option-as-alt = true
-keybind = super+k=clear_screen
+keybind = unconsumed:super+k=clear_screen
 
 
 

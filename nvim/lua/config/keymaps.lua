@@ -102,3 +102,7 @@ end)
 
 --keymap.set("t", "<C-w>", "<C-\\><C-n>", { silent = true })
 keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
+
+vim.keymap.set("t", "<D-k>", function()
+	vim.api.nvim_chan_send(vim.b.terminal_job_id, "clear\n")
+end, { noremap = true, silent = true })
