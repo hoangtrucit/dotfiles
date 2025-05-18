@@ -1,11 +1,11 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.clangd"
+    "lazyvim.plugins.extras.ai.copilot"
   ],
   "install_version": 7,
   "news": {
     "NEWS.md": "10960",
-    "doc/news.txt": "25343"
+    "doc/news.txt": "10665"
   },
   "version": 8
 }

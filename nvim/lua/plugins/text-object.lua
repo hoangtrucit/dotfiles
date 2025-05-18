@@ -30,7 +30,7 @@ return {
 				"regex",
 				"vue",
 				"svelte",
-				"latex",
+				-- "latex",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },

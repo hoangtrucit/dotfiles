@@ -34,14 +34,13 @@ vim.opt.mouse = "a"
 vim.opt.cursorline = false
 vim.opt.termguicolors = true
 
-vim.opt.foldcolumn = "1" -- '0' is not bad
-vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldclose = "all" -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-vim.opt.foldnestmax = 4
-vim.opt.foldmethod = "expr"
-vim.opt.foldtext = ""
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+-- vim.opt.foldnestmax = 4
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldtext = ""
 vim.opt.fillchars:append("eob: ,fold: ,foldopen:,foldsep: ,foldclose:")
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- Add asterisks in block comments

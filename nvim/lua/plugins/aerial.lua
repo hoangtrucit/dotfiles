@@ -42,7 +42,7 @@ return {
 					statuscolumn = " ",
 				},
 				max_width = { 40, 0.2 },
-				min_width = 200,
+				min_width = 150,
 				default_direction = "float",
 			},
 			float = {
@@ -61,7 +61,7 @@ return {
 				-- min_height = {8, 0.1} means "the greater of 8 rows or 10% of total"
 				max_height = 0.9,
 				height = nil,
-				min_height = { 30, 0.4 },
+				min_height = { 27, 0.4 },
 
 				override = function(conf, source_winid)
 					-- This is the config that will be passed to nvim_open_win.

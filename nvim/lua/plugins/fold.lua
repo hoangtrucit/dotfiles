@@ -4,7 +4,7 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-ufo",
-		lazy = false,
+		lazy = true,
 		config = function()
 			-- vim.o.foldcolumn = "1" -- '0' is not bad
 			-- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
@@ -39,6 +39,7 @@ return {
 				table.insert(newVirtText, { suffix, "MoreMsg" })
 				return newVirtText
 			end
+
 			-- local ftMap = {
 			-- 	vim = "indent",
 			-- 	python = { "indent" },
@@ -51,44 +52,44 @@ return {
 					highlight UfoFoldedBg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 					highlight Folded ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 				]])
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			}
+			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+			-- capabilities.textDocument.foldingRange = {
+			-- 	dynamicRegistration = false,
+			-- 	lineFoldingOnly = true,
+			-- }
 
-			local function available_servers()
-				local servers = {}
-				local configs = require("lspconfig.configs")
-				for server, config in pairs(configs) do
-					if config.manager ~= nil then
-						table.insert(servers, server)
-					end
-				end
-				return servers
-			end
-
+			-- local function available_servers()
+			-- 	local servers = {}
+			-- 	local configs = require("lspconfig.configs")
+			-- 	for server, config in pairs(configs) do
+			-- 		if config.manager ~= nil then
+			-- 			table.insert(servers, server)
+			-- 		end
+			-- 	end
+			-- 	return servers
+			-- end
+			--
 			-- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-			local language_servers = available_servers()
-			for _, ls in ipairs(language_servers) do
-				require("lspconfig")[ls].setup({
-					capabilities = capabilities,
-					-- you can add other fields for setting up lsp server in this table
-				})
-			end
+			-- local language_servers = available_servers()
+			-- for _, ls in ipairs(language_servers) do
+			-- 	require("lspconfig")[ls].setup({
+			-- 		capabilities = capabilities,
+			-- 		-- you can add other fields for setting up lsp server in this table
+			-- 	})
+			-- end
 			require("ufo").setup({
 				-- provider_selector = function()
 				-- 	return { "treesitter", "indent" }
 				-- end,
 				enable_get_fold_virt_text = true,
 				open_fold_hl_timeout = 150,
-				close_fold_kinds_for_ft = {
-					default = { "imports" },
-					typescript = { "imports", "comment", "region", "marker" },
-					typescriptreact = { "imports", "comment", "region" },
-					json = { "comment" },
-					c = { "comment", "region" },
-				},
+				-- close_fold_kinds_for_ft = {
+				-- 	default = { "imports" },
+				-- 	typescript = { "imports", "comment", "region", "marker" },
+				-- 	typescriptreact = { "imports", "comment", "region" },
+				-- 	json = { "comment" },
+				-- 	c = { "comment", "region" },
+				-- },
 				preview = {
 					win_config = {
 						border = { "", "─", "", "", "", "─", "", "" },
@@ -103,16 +104,16 @@ return {
 					},
 				},
 				fold_virt_text_handler = handler,
-				-- provider_selector = function(bufnr, filetype, buftype)
-				-- 	print(filetype)
-				-- 	-- if you prefer treesitter provider rather than lsp,
-				-- 	-- return ftMap[filetype] or {'treesitter', 'indent'}
-				-- 	return ftMap[filetype]
-				-- 	-- return ftMap[filetype]
-				-- 	-- return { "treesitter", "indent" }
-				--
-				-- 	-- refer to ./doc/example.lua for detail
-				-- end,
+				provider_selector = function(bufnr, filetype, buftype)
+					-- print(filetype)
+					-- if you prefer treesitter provider rather than lsp,
+					-- return ftMap[filetype] or {'treesitter', 'indent'}
+					-- return ftMap[filetype]
+					-- return ftMap[filetype]
+					return { "treesitter", "indent" }
+
+					-- refer to ./doc/example.lua for detail
+				end,
 			})
 			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)

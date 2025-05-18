@@ -11,7 +11,7 @@ return {
 			},
 			files = {
 				fd_opts =
-				[[--color=never --type f --hidden --follow --exclude .git --exclude node_modules --exclude .DS_Store]],
+				[[--color=never --type f --hidden --follow --exclude .git --exclude node_modules --exclude .DS_Store --exclude gRPC --exclude dist]],
 				fzf_opts = {
 					["--layout"] = "default",
 				},

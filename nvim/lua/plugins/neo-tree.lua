@@ -194,10 +194,20 @@ return {
 					nowait = true,
 				},
 				mappings = {
-					["l"] = {
-						"toggle_node",
-						nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
-					},
+					-- ["l"] = {
+					-- 	"toggle_node",
+					-- 	nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+					-- },
+					["C"] = function(state)
+						local fs = require("neo-tree.sources.filesystem")
+						local path = state.tree:get_node().path
+						local input = vim.fn.input("Duplicate as: ", path, "file")
+						if input ~= "" then
+							vim.fn.mkdir(vim.fn.fnamemodify(input, ":h"), "p")
+							vim.fn.copyfile(path, input)
+							fs.refresh()
+						end
+					end,
 					["<2-LeftMouse>"] = "open",
 					["<cr>"] = "open",
 					["<esc>"] = "cancel", -- close preview or floating neo-tree window
