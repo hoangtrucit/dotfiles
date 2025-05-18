@@ -1,4 +1,5 @@
- theme = rose-pine
+theme = rose-pine
+# theme = tokyonight
 #theme = catppuccin-frappe
 bold-is-bright = true
 

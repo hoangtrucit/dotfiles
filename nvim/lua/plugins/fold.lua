@@ -2,136 +2,136 @@ return {
 	{
 		"kevinhwang91/promise-async",
 	},
-	{
-		"kevinhwang91/nvim-ufo",
-		lazy = false,
-		config = function()
-			-- vim.o.foldcolumn = "1" -- '0' is not bad
-			-- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-			-- vim.o.foldlevelstart = 99
-			-- vim.o.foldenable = true
-
-			-- show amount of folded lines instead of default thing
-			local handler = function(virtText, lnum, endLnum, width, truncate)
-				local newVirtText = {}
-				local suffix = (" 󰁂 %d "):format(endLnum - lnum)
-				local sufWidth = vim.fn.strdisplaywidth(suffix)
-				local targetWidth = width - sufWidth
-				local curWidth = 0
-				for _, chunk in ipairs(virtText) do
-					local chunkText = chunk[1]
-					local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-					if targetWidth > curWidth + chunkWidth then
-						table.insert(newVirtText, chunk)
-					else
-						chunkText = truncate(chunkText, targetWidth - curWidth)
-						local hlGroup = chunk[2]
-						table.insert(newVirtText, { chunkText, hlGroup })
-						chunkWidth = vim.fn.strdisplaywidth(chunkText)
-						-- str width returned from truncate() may less than 2nd argument, need padding
-						if curWidth + chunkWidth < targetWidth then
-							suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-						end
-						break
-					end
-					curWidth = curWidth + chunkWidth
-				end
-				table.insert(newVirtText, { suffix, "MoreMsg" })
-				return newVirtText
-			end
-			-- local ftMap = {
-			-- 	vim = "indent",
-			-- 	python = { "indent" },
-			-- 	typescript = { "indent" },
-			-- 	typescriptreact = { "indent" },
-			-- 	git = "",
-			-- }
-			vim.cmd([[
-					highlight UfoFoldedFg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-					highlight UfoFoldedBg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-					highlight Folded ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-				]])
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			}
-
-			local function available_servers()
-				local servers = {}
-				local configs = require("lspconfig.configs")
-				for server, config in pairs(configs) do
-					if config.manager ~= nil then
-						table.insert(servers, server)
-					end
-				end
-				return servers
-			end
-
-			-- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-			local language_servers = available_servers()
-			for _, ls in ipairs(language_servers) do
-				require("lspconfig")[ls].setup({
-					capabilities = capabilities,
-					-- you can add other fields for setting up lsp server in this table
-				})
-			end
-			require("ufo").setup({
-				-- provider_selector = function()
-				-- 	return { "treesitter", "indent" }
-				-- end,
-				enable_get_fold_virt_text = true,
-				open_fold_hl_timeout = 150,
-				close_fold_kinds_for_ft = {
-					default = { "imports" },
-					typescript = { "imports", "comment", "region", "marker" },
-					typescriptreact = { "imports", "comment", "region" },
-					json = { "comment" },
-					c = { "comment", "region" },
-				},
-				preview = {
-					win_config = {
-						border = { "", "─", "", "", "", "─", "", "" },
-						winhighlight = "Normal:Folded",
-						winblend = 0,
-					},
-					mappings = {
-						scrollU = "<C-u>",
-						scrollD = "<C-d>",
-						jumpTop = "[",
-						jumpBot = "]",
-					},
-				},
-				fold_virt_text_handler = handler,
-				-- provider_selector = function(bufnr, filetype, buftype)
-				-- 	print(filetype)
-				-- 	-- if you prefer treesitter provider rather than lsp,
-				-- 	-- return ftMap[filetype] or {'treesitter', 'indent'}
-				-- 	return ftMap[filetype]
-				-- 	-- return ftMap[filetype]
-				-- 	-- return { "treesitter", "indent" }
-				--
-				-- 	-- refer to ./doc/example.lua for detail
-				-- end,
-			})
-			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-			vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
-			vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
-			vim.keymap.set("n", "zk", function()
-				local winid = require("ufo").peekFoldedLinesUnderCursor()
-				if not winid then
-					vim.lsp.buf.hover()
-				else
-					local bufnr = vim.api.nvim_win_get_buf(winid)
-					local keys = { "a", "i", "o", "A", "I", "O", "gd", "gr" }
-					for _, k in ipairs(keys) do
-						-- Add a prefix key to fire `trace` action,
-						-- if Neovim is 0.8.0 before, remap yourself
-						vim.keymap.set("n", k, "<CR>" .. k, { noremap = false, buffer = bufnr })
-					end
-				end
-			end)
-		end,
-	},
+	-- {
+	-- 	"kevinhwang91/nvim-ufo",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		-- vim.o.foldcolumn = "1" -- '0' is not bad
+	-- 		-- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+	-- 		-- vim.o.foldlevelstart = 99
+	-- 		-- vim.o.foldenable = true
+	--
+	-- 		-- show amount of folded lines instead of default thing
+	-- 		local handler = function(virtText, lnum, endLnum, width, truncate)
+	-- 			local newVirtText = {}
+	-- 			local suffix = (" 󰁂 %d "):format(endLnum - lnum)
+	-- 			local sufWidth = vim.fn.strdisplaywidth(suffix)
+	-- 			local targetWidth = width - sufWidth
+	-- 			local curWidth = 0
+	-- 			for _, chunk in ipairs(virtText) do
+	-- 				local chunkText = chunk[1]
+	-- 				local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+	-- 				if targetWidth > curWidth + chunkWidth then
+	-- 					table.insert(newVirtText, chunk)
+	-- 				else
+	-- 					chunkText = truncate(chunkText, targetWidth - curWidth)
+	-- 					local hlGroup = chunk[2]
+	-- 					table.insert(newVirtText, { chunkText, hlGroup })
+	-- 					chunkWidth = vim.fn.strdisplaywidth(chunkText)
+	-- 					-- str width returned from truncate() may less than 2nd argument, need padding
+	-- 					if curWidth + chunkWidth < targetWidth then
+	-- 						suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+	-- 					end
+	-- 					break
+	-- 				end
+	-- 				curWidth = curWidth + chunkWidth
+	-- 			end
+	-- 			table.insert(newVirtText, { suffix, "MoreMsg" })
+	-- 			return newVirtText
+	-- 		end
+	-- 		-- local ftMap = {
+	-- 		-- 	vim = "indent",
+	-- 		-- 	python = { "indent" },
+	-- 		-- 	typescript = { "indent" },
+	-- 		-- 	typescriptreact = { "indent" },
+	-- 		-- 	git = "",
+	-- 		-- }
+	-- 		vim.cmd([[
+	-- 				highlight UfoFoldedFg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+	-- 				highlight UfoFoldedBg ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+	-- 				highlight Folded ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+	-- 			]])
+	-- 		local capabilities = vim.lsp.protocol.make_client_capabilities()
+	-- 		capabilities.textDocument.foldingRange = {
+	-- 			dynamicRegistration = false,
+	-- 			lineFoldingOnly = true,
+	-- 		}
+	--
+	-- 		local function available_servers()
+	-- 			local servers = {}
+	-- 			local configs = require("lspconfig.configs")
+	-- 			for server, config in pairs(configs) do
+	-- 				if config.manager ~= nil then
+	-- 					table.insert(servers, server)
+	-- 				end
+	-- 			end
+	-- 			return servers
+	-- 		end
+	--
+	-- 		-- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+	-- 		local language_servers = available_servers()
+	-- 		for _, ls in ipairs(language_servers) do
+	-- 			require("lspconfig")[ls].setup({
+	-- 				capabilities = capabilities,
+	-- 				-- you can add other fields for setting up lsp server in this table
+	-- 			})
+	-- 		end
+	-- 		require("ufo").setup({
+	-- 			-- provider_selector = function()
+	-- 			-- 	return { "treesitter", "indent" }
+	-- 			-- end,
+	-- 			enable_get_fold_virt_text = true,
+	-- 			open_fold_hl_timeout = 150,
+	-- 			close_fold_kinds_for_ft = {
+	-- 				default = { "imports" },
+	-- 				typescript = { "imports", "comment", "region", "marker" },
+	-- 				typescriptreact = { "imports", "comment", "region" },
+	-- 				json = { "comment" },
+	-- 				c = { "comment", "region" },
+	-- 			},
+	-- 			preview = {
+	-- 				win_config = {
+	-- 					border = { "", "─", "", "", "", "─", "", "" },
+	-- 					winhighlight = "Normal:Folded",
+	-- 					winblend = 0,
+	-- 				},
+	-- 				mappings = {
+	-- 					scrollU = "<C-u>",
+	-- 					scrollD = "<C-d>",
+	-- 					jumpTop = "[",
+	-- 					jumpBot = "]",
+	-- 				},
+	-- 			},
+	-- 			fold_virt_text_handler = handler,
+	-- 			-- provider_selector = function(bufnr, filetype, buftype)
+	-- 			-- 	print(filetype)
+	-- 			-- 	-- if you prefer treesitter provider rather than lsp,
+	-- 			-- 	-- return ftMap[filetype] or {'treesitter', 'indent'}
+	-- 			-- 	return ftMap[filetype]
+	-- 			-- 	-- return ftMap[filetype]
+	-- 			-- 	-- return { "treesitter", "indent" }
+	-- 			--
+	-- 			-- 	-- refer to ./doc/example.lua for detail
+	-- 			-- end,
+	-- 		})
+	-- 		vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+	-- 		vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+	-- 		vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+	-- 		vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+	-- 		vim.keymap.set("n", "zk", function()
+	-- 			local winid = require("ufo").peekFoldedLinesUnderCursor()
+	-- 			if not winid then
+	-- 				vim.lsp.buf.hover()
+	-- 			else
+	-- 				local bufnr = vim.api.nvim_win_get_buf(winid)
+	-- 				local keys = { "a", "i", "o", "A", "I", "O", "gd", "gr" }
+	-- 				for _, k in ipairs(keys) do
+	-- 					-- Add a prefix key to fire `trace` action,
+	-- 					-- if Neovim is 0.8.0 before, remap yourself
+	-- 					vim.keymap.set("n", k, "<CR>" .. k, { noremap = false, buffer = bufnr })
+	-- 				end
+	-- 			end
+	-- 		end)
+	-- 	end,
+	-- },
 }

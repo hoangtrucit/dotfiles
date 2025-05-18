@@ -55,7 +55,10 @@ return {
 				end, vim.tbl_deep_extend("force", opts, { desc = "LSP Signature Help" }))
 			end)
 
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
+			local ok, cmp = pcall(require, "blink.cmp")
+
+			local capabilities = ok and cmp.get_lsp_capabilities() or vim.lsp.protocol.make_client_capabilities()
+			-- local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
@@ -93,10 +96,15 @@ return {
 								"typescript",
 								"typescriptreact",
 								"typescript.tsx",
-								w,
 							},
 						})
 					end,
+					clangd = function()
+						require("lspconfig").clangd.setup({
+							filetypes = { "c", "cpp", "objc", "objcpp" }, -- 👈 prevent attaching to .proto
+							capabilities = capabilities,
+						})
+					end
 				},
 			})
 
