@@ -14,7 +14,7 @@ return {
 						height = 5,
 						padding = 1,
 					},
-					{ section = "keys", gap = 1, padding = 1 },
+					{ section = "keys",  gap = 1, padding = 1 },
 					{
 						pane = 2,
 						icon = " ",
@@ -74,14 +74,24 @@ return {
 			picker = {
 				enabled = true,
 				sources = {
+					files = {
+						layout = {
+							prompt = "bottom",
+							preset = "telescope",
+							preview = true,
+							reverse = true,
+							layout = {
+								width = 180,
+							},
+						},
+					},
 					explorer = {
 						layout = {
 							preview = true,
-							reverse = false,
+							reverse = true,
 							preset = "telescope",
 							layout = {
 								width = 180,
-								-- height = 50,
 							},
 						},
 					},
@@ -96,7 +106,7 @@ return {
 				height = { min = 1, max = 0.6 },
 				-- editor margin to keep free. tabline and statusline are taken into account automatically
 				margin = { top = 0, right = 1, bottom = 0 },
-				padding = true, -- add 1 cell of left/right padding to the notification window
+				padding = true,  -- add 1 cell of left/right padding to the notification window
 				sort = { "level", "added" }, -- sort by level and time
 				-- minimum log level to display. TRACE is the lowest
 				-- all notifications are stored in history
@@ -142,11 +152,11 @@ return {
 					"pdf",
 				},
 			},
-			-- animate = {
-			-- 	duration = 20, -- ms per step
-			-- 	easing = "linear",
-			-- 	fps = 60, -- frames per second. Global setting for all animations
-			-- },
+			animate = {
+				duration = 20, -- ms per step
+				easing = "linear",
+				fps = 60, -- frames per second. Global setting for all animations
+			},
 			input = {
 				enabled = true,
 				backdrop = false,
@@ -162,7 +172,8 @@ return {
 				-- row = -3,
 				-- col = 0,
 				wo = {
-					winhighlight = "NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle",
+					winhighlight =
+					"NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle",
 					cursorline = false,
 				},
 				bo = {
@@ -186,7 +197,7 @@ return {
 			},
 		},
 		keys = {
-			-- { "<leader>e",  function() Snacks.explorer() end,                                       desc = "File Explorer" },
+			{ "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
 			{
 				"<leader>fb",
 				function()
@@ -202,11 +213,18 @@ return {
 				desc = "Find Config File",
 			},
 			{
-				"<leader>ff",
+				"<leader><leader>",
 				function()
 					Snacks.picker.files()
 				end,
 				desc = "Find Files",
+			},
+			{
+				"<leader>ff",
+				function()
+					Snacks.picker.files()
+				end,
+				desc = "Find Files 12312312",
 			},
 			{
 				"<leader>fg",

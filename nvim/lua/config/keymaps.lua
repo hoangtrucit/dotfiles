@@ -69,6 +69,7 @@ keymap.set("v", "<D-/>", "<Esc>:normal gvgc<CR>")
 keymap.set("n", "<leader>cd", ":Dashboard<CR>")
 keymap.set("n", "<C-;>", ":wincmd w<CR>")
 keymap.set("n", "<leader>cd", ":lua Snacks.dashboard()<CR>")
+keymap.set("n", "<leader>ff", ":lua Snacks.picker.files()<CR>")
 
 keymap.set("i", "<D-i>", "<C-space>", { noremap = false, remap = true })
 keymap.set("i", "<D-.>", "<C-space>", { noremap = false, remap = true })
@@ -92,7 +93,7 @@ vim.keymap.set("n", "<leader>bc", "<cmd>close<CR>", { desc = "Close Buffer" })
 -- keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
 
 keymap.set("v", "zj", "<CMD>VisualDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
-keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>") -- closeAllFolds == closeFoldsWith(0)
+keymap.set("n", "zj", "<CMD>LineDuplicate +1<CR>")   -- closeAllFolds == closeFoldsWith(0)
 
 keymap.set("n", "<leader>gn", ":lua require('neogen').generate()<CR>", opts)
 -- keymap.set("n", "<leader>cp", ":lua require('project').create_floating_window()<CR>", opts)
@@ -120,7 +121,8 @@ vim.api.nvim_create_autocmd("LspProgress", {
 	---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		local value = ev.data.params.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+		local value = ev.data.params
+			.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
 		if not client or type(value) ~= "table" then
 			return
 		end

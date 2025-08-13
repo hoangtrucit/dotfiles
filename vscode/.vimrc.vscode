@@ -1,0 +1,16 @@
+noremap  y "*y
+noremap  Y "*Y
+" noremap  p "*p
+" noremap  P "*P
+vnoremap y "*y
+vnoremap Y "*Y
+vnoremap p "_dP
+" vnoremap p "*p
+" vnoremap P "*P
+"nnoremap <C-Up> <Up>ddp<Up>
+"nnoremap <C-Down> ddp
+map <C-N>  <A-N>
+map <C-P>  <A-P>
+map <C-X>  <A-X>
+map g<C-N> g<A-N>
+set ignorecase

@@ -154,7 +154,8 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	keys = {
-		{ "<leader>/", vim.NIL },
+		{ "<leader>/",  vim.NIL },
+		{ "<leader>ff", vim.NIL },
 	},
 	-- "nvim-telescope/telescope.nvim",
 	-- tag = "0.1.4",
